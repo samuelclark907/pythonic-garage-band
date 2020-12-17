@@ -1,7 +1,34 @@
-class Band:
-    def __init__(self, name, members=None):
+class Musician:
+    members = []
+
+    def __init__(self, name,inst="flute"):
+        self.name = name
+        self.inst = inst
+        # self.solo = f"crazy {inst} solo"
+        # self.__class__.members.append(self)
+
+    
+    def get_instrument(self):
+        return self.inst
+
+    def play_solo(self):
+        return self.solo
+
+    def __str__(self):
+        return f'My name is {self.name} and I play {self.inst}'
+
+    def __repr__(self):
+        return f"{self.__class__.__name__} instance. Name = {self.name}"
+
+   
+
+
+class Band(Musician):
+    def __init__(self, name, members=[]):
         self.name = name
         self.members = members
+        self.solos = []
+        # members = solos
 
     def __str__(self):
         return f"The band {self.name}"
@@ -9,26 +36,38 @@ class Band:
     def __repr__(self):
         return f"Band instance. name={self.name}, members={self.members}"
 
+    def play_solos(self):
+        return [member.solo for member in self.members]
 
-class Musician:
-    pass
+    @classmethod
+    def to_list(self):
+        return len[self.members]
 
-
-class Guitarist:
-    def __init__(self, name='Random'):
-        self.name = name
+class Guitarist(Musician):
+    def __init__(self, name):
+        super().__init__(name)
         self.inst = 'guitar'
-
-    def __str__(self):
-        return f'My name is {self.name} and I play {self.inst}'
-
-    # def __repr__(self):
-
-   
+        self.solo = 'face melting guitar solo'
 
 
-class Bassist:
-    pass
 
-class Drummer:
-    pass
+class Bassist(Musician):
+    def __init__(self, name):
+        super().__init__(name)
+        self.inst = 'bass'
+        self.solo = 'bom bom buh bom'
+
+
+
+
+class Drummer(Musician):
+    def __init__(self, name):
+        super().__init__(name)
+        self.inst = 'drums'
+        self.solo = 'rattle boom crash'
+
+
+
+
+if __name__ == "__main__":
+    print(Band('John'))
