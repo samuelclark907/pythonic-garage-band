@@ -1,10 +1,10 @@
 class Musician:
     members = []
 
-    def __init__(self, name,inst="flute"):
+    def __init__(self, name, inst="flute"):
         self.name = name
         self.inst = inst
-        # self.solo = f"crazy {inst} solo"
+        self.solo = f"crazy {inst} solo"
         # self.__class__.members.append(self)
 
     
@@ -23,12 +23,12 @@ class Musician:
    
 
 
-class Band(Musician):
-    def __init__(self, name, members=[]):
+class Band:
+    instances = []
+    def __init__(self, name, members=None):
         self.name = name
         self.members = members
-        self.solos = []
-        # members = solos
+        Band.instances.append(self.name)
 
     def __str__(self):
         return f"The band {self.name}"
@@ -39,9 +39,11 @@ class Band(Musician):
     def play_solos(self):
         return [member.solo for member in self.members]
 
+
     @classmethod
-    def to_list(self):
-        return len[self.members]
+    def to_list(cls):
+        return cls.instances
+    
 
 class Guitarist(Musician):
     def __init__(self, name):
@@ -70,4 +72,9 @@ class Drummer(Musician):
 
 
 if __name__ == "__main__":
-    print(Band('John'))
+    bands = []
+    chicken = Band("lob")
+    cow = Band('doll')
+    bands.append(chicken)
+    bands.append(cow)
+    print(bands)
